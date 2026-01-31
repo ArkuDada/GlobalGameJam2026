@@ -8,14 +8,16 @@ namespace Script.Player
         [SerializeField]
         SpriteRenderer spriteRenderer;
 
+        [SerializeField]
+        Material playerMaterial;
+
         public GameColorEnum playerColor = GameColorEnum.White;
 
         public bool bMixMode = false;
 
         private void Start()
         {
-            if(spriteRenderer)
-                spriteRenderer.color = Color.white;
+            SetColor(GameColorEnum.White, Color.white);
         }
 
         public void SetColor(GameColorEnum newColor, Color color)
@@ -23,6 +25,12 @@ namespace Script.Player
             playerColor = newColor;
             if(spriteRenderer)
                 spriteRenderer.color = color;
+
+            if(playerMaterial)
+            {
+                //set property base color
+                playerMaterial.SetColor("_BaseColor", color);
+            }
         }
     }
 }

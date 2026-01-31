@@ -16,7 +16,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &3954423430206947173
 Transform:
   m_ObjectHideFlags: 0
@@ -163,6 +163,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Script.Player.PlayerData
   spriteRenderer: {fileID: 1994950005948383947}
+  playerMaterial: {fileID: 2100000, guid: b4441d404f6f409469119ebcafc9d8dd, type: 2}
   playerColor: 0
   bMixMode: 0
 --- !u!114 &3851712741797700420
