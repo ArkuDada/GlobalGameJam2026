@@ -58,7 +58,6 @@ public class PlayerController : MonoBehaviour
     private void HandleMovement(MovementEnum movementEnum)
     {
         bool canMove = false;
-        bool bValidNextColor = false;
         GameColorEnum currentColor = _playerData.playerColor;
         if(CanMoveTo(movementEnum, out Vector3 targetPos, out GameColorEnum predictedColor,
                out bool validColorSequence))
@@ -71,17 +70,17 @@ public class PlayerController : MonoBehaviour
 
             if(validColorSequence)
             {
-                bValidNextColor = true;
                 currentColor = predictedColor;
                 ChangePlayerColor(currentColor);
             }
         }
 
+
         MovementResult movementResult = new MovementResult
         {
             bCanMove = canMove,
             InputSequence = movementEnum.ToInputSequenceEnum(),
-            ValidNextColor = bValidNextColor,
+            ValidNextColor = validColorSequence,
             NextColor = predictedColor
         };
 

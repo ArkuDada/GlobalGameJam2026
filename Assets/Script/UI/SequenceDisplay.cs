@@ -35,11 +35,14 @@ namespace Script.UI
 
         private bool bDisplayMutable = true;
 
+        Task _wrongShakeTask = null;
+
         private void Awake()
         {
             ResetUI();
         }
 
+        // Initialization
         private void ResetUI()
         {
             foreach(var text in _sequenceTexts)
@@ -54,22 +57,7 @@ namespace Script.UI
             SaveDisplayState();
         }
 
-        public void OnReceiveMovementInputResult(MovementResult mr)
-        {
-            UpdateDisplayTask(mr);
-        }
-
-        private void EnableRightMostSlot(string displaySymbol, Color displayColor)
-        {
-            var text = _sequenceTexts[_currentActiveIndex];
-            text.gameObject.SetActive(true);
-
-            text.text = displaySymbol;
-            text.color = displayColor;
-
-            _currentActiveIndex = Mathf.Min(_currentActiveIndex + 1, _sequenceTexts.Count);
-        }
-
+        // State Management
         private void SaveDisplayState()
         {
             _savedDisplaySlotStates.Clear();
@@ -96,55 +84,45 @@ namespace Script.UI
             }
         }
 
-        private void ShiftDisplay()
+        // Display Updates
+        public void OnReceiveMovementInputResult(MovementResult mr)
         {
-            for(int i = 0; i < _sequenceTexts.Count - 1; i++)
-            {
-                _sequenceTexts[i].text = _sequenceTexts[i + 1].text;
-                _sequenceTexts[i].color = _sequenceTexts[i + 1].color;
-            }
-
-            DisableLastSlot();
-        }
-
-        private void DisableLastSlot()
-        {
-            // Disable the last one
-            var lastText = _sequenceTexts[^1];
-            _currentActiveIndex = _sequenceTexts.Count - 1;
-            lastText.text = "";
-            lastText.gameObject.SetActive(false);
+            UpdateDisplayTask(mr);
         }
 
         private async void UpdateDisplayTask(MovementResult mr)
         {
-            while(!bDisplayMutable)
+            if(!bDisplayMutable && _wrongShakeTask != null && !_wrongShakeTask.IsCanceled)
             {
-                if(_wrongShakeTask != null && !_wrongShakeTask.IsCanceled)
+                try
                 {
-                    try
-                    {
-                        _wrongShakeTask.Dispose();
-                        _wrongShakeFeedback.SkipToTheEnd();
-                    }
-                    catch(Exception e)
-                    {
-                        Console.WriteLine(e);
-                        throw;
-                    }
-
-                    await Task.Yield();
+                    _wrongShakeTask.Dispose();
+                    _wrongShakeFeedback.SkipToTheEnd();
                 }
+                catch(Exception e)
+                {
+                    Console.WriteLine(e);
+                    throw;
+                }
+
+                await Task.Yield();
             }
+
 
             if(_currentActiveIndex >= _sequenceTexts.Count)
             {
-                // Shift all texts to the left
                 ShiftDisplay();
             }
 
+            //Debug Movement Result
+            Debug.Log($"{mr.NextColor} | ValidNextColor: {mr.ValidNextColor} | CanMove: {mr.bCanMove}");
+
             string displaySymbol = mr.InputSequence.ToDisplayString();
-            Color displayColor = _colorDict.GetColor(mr.NextColor);
+            Color displayColor = Color.white;
+            if(mr.ValidNextColor)
+            {
+                displayColor = _colorDict.GetColor(mr.NextColor);
+            }
 
             EnableRightMostSlot(displaySymbol, displayColor);
 
@@ -158,8 +136,37 @@ namespace Script.UI
             }
         }
 
-        Task _wrongShakeTask = null;
+        private void EnableRightMostSlot(string displaySymbol, Color displayColor)
+        {
+            var text = _sequenceTexts[_currentActiveIndex];
+            text.gameObject.SetActive(true);
 
+            text.text = displaySymbol;
+            text.color = displayColor;
+
+            _currentActiveIndex = Mathf.Min(_currentActiveIndex + 1, _sequenceTexts.Count);
+        }
+
+        private void ShiftDisplay()
+        {
+            for(int i = 0; i < _sequenceTexts.Count - 1; i++)
+            {
+                _sequenceTexts[i].text = _sequenceTexts[i + 1].text;
+                _sequenceTexts[i].color = _sequenceTexts[i + 1].color;
+            }
+
+            DisableLastSlot();
+        }
+
+        private void DisableLastSlot()
+        {
+            var lastText = _sequenceTexts[^1];
+            _currentActiveIndex = _sequenceTexts.Count - 1;
+            lastText.text = "";
+            lastText.gameObject.SetActive(false);
+        }
+
+        // Feedback Handling
         private async void PlayWrongShakeFeedback()
         {
             bDisplayMutable = false;
