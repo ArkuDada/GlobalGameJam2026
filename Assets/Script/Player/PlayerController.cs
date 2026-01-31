@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using Obvious.Soap;
 using Script;
 using Script.GameColor;
 using Script.Player;
@@ -26,6 +27,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private ColorDict _colorDict;
 
+    [SerializeField]
+    private ScriptableEventNoParam OnPlayerReachedGoal;
+
     public void HandleMovement(MovementEnum movementEnum)
     {
         if(!CanMoveTo(movementEnum, out Vector3 targetPos, out GameColorEnum predictedColor))
@@ -51,7 +55,12 @@ public class PlayerController : MonoBehaviour
                 Debug.Log($"Step on Tile Color: {tileInfo.TileColor}, Player Color: {_playerData.playerColor}");
                 if(tileInfo.TileType.HasFlag(TileTypeEnum.Goal))
                 {
-                    Debug.Log("Reached Goal!");
+                    if(OnPlayerReachedGoal != null)
+                    {
+                        Debug.Log("Reached Goal!");
+
+                        OnPlayerReachedGoal.Raise();
+                    }
                 }
             }
         }

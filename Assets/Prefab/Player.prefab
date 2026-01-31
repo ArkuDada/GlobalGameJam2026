@@ -112,6 +112,7 @@ MonoBehaviour:
   colorRecognizer: {fileID: 3851712741797700420}
   _gridHelper: {fileID: 0}
   _colorDict: {fileID: 11400000, guid: 2c18e536969a9a24d80e613765c6033e, type: 2}
+  OnPlayerReachedGoal: {fileID: 11400000, guid: 3bd0e24ff7457934186d7b876a92beae, type: 2}
 --- !u!114 &2694936373844737109
 MonoBehaviour:
   m_ObjectHideFlags: 0
