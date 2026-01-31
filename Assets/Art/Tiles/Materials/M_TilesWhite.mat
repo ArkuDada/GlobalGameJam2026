@@ -39,6 +39,7 @@ Material:
     RenderType: Opaque
   disabledShaderPasses:
   - MOTIONVECTORS
+  - SRPDEFAULTUNLIT
   m_LockedProperties: _2nd_ShadeColor _2nd_ShadeMap
   m_SavedProperties:
     serializedVersion: 3
