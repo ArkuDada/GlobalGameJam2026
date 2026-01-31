@@ -1,10 +1,11 @@
-﻿using Script;
-using UnityEngine;
+﻿using System;
+using Script;
 
+[Serializable]
 public struct MovementResult
 {
     public bool bCanMove;
-    public Vector3 TargetPosition;
-    public bool ValidColorSequence;
-    public GameColorEnum PredictedColor;
+    public InputSequenceEnum InputSequence;
+    public bool ValidNextColor;
+    public GameColorEnum NextColor;
 }

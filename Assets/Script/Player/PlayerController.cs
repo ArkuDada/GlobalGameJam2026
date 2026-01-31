@@ -27,6 +27,10 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private ColorDict _colorDict;
 
+    [Header("Events")]
+    [SerializeField]
+    private ScriptableEventMovementResult OnMovementResult;
+
     [SerializeField]
     private ScriptableEventNoParam OnPlayerReachedGoal;
 
@@ -52,8 +56,6 @@ public class PlayerController : MonoBehaviour
 
             _inputSequence.Add(movementEnum);
 
-            Debug.Log("Moving: " + movementEnum);
-
             transform.position = targetPos;
 
             if(validColorSequence)
@@ -62,12 +64,24 @@ public class PlayerController : MonoBehaviour
                 currentColor = predictedColor;
                 ChangePlayerColor(currentColor);
             }
-
-
-            CheckCurrentGridEffect();
         }
-        else
+
+        MovementResult movementResult = new MovementResult
         {
+            bCanMove = canMove,
+            InputSequence = movementEnum.ToInputSequenceEnum(),
+            ValidNextColor = bValidNextColor,
+            NextColor = predictedColor
+        };
+
+        if(OnMovementResult)
+        {
+            OnMovementResult.Raise(movementResult);
+        }
+
+        if(canMove)
+        {
+            CheckCurrentGridEffect();
         }
     }
 
@@ -102,8 +116,6 @@ public class PlayerController : MonoBehaviour
                 _playerData.bMixMode = false;
             }
         }
-
-        Debug.Log($"Is Mix Mode {_playerData.bMixMode}");
     }
 
     private void CheckCurrentGridEffect()
@@ -116,8 +128,6 @@ public class PlayerController : MonoBehaviour
                 {
                     if(OnPlayerReachedGoal != null)
                     {
-                        Debug.Log("Reached Goal!");
-
                         OnPlayerReachedGoal.Raise();
                     }
                 }
@@ -126,6 +136,19 @@ public class PlayerController : MonoBehaviour
                 {
                     _playerData.bMixMode = true;
                     _inputSequence.Add(MovementEnum.Null);
+
+                    MovementResult movementResult = new MovementResult
+                    {
+                        bCanMove = true,
+                        InputSequence = InputSequenceEnum.Mix,
+                        ValidNextColor = true,
+                        NextColor = _playerData.playerColor
+                    };
+
+                    if(OnMovementResult)
+                    {
+                        OnMovementResult.Raise(movementResult);
+                    }
                 }
             }
         }
@@ -154,7 +177,7 @@ public class PlayerController : MonoBehaviour
         validColorSequence = colorRecognizer.GetColor(movementEnums, out var newPredictedColor);
         if(validColorSequence)
         {
-            if(TryGetNextColor(currentPredictedColor,newPredictedColor, out var nextColor))
+            if(TryGetNextColor(currentPredictedColor, newPredictedColor, out var nextColor))
             {
                 currentPredictedColor = nextColor;
             }
@@ -180,8 +203,6 @@ public class PlayerController : MonoBehaviour
                 }
             }
         }
-
-        Debug.Log($"Can Move: {bCanMove}, To Position: {targetPos}, Predicted Color: {currentPredictedColor}");
 
         predictedColor = currentPredictedColor;
 
