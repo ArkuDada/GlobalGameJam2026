@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Unity.VisualScripting;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 
 namespace Script.Scene
@@ -7,12 +8,15 @@ namespace Script.Scene
     {
         [SerializeField]
         SceneObject sceneObject;
+        
+        bool bSceneLoaded = false;
 
         public void LoadScene()
         {
-            if(sceneObject)
+            if(sceneObject && !bSceneLoaded)
             {
-                SceneManager.LoadScene(sceneObject.scenePath);
+                bSceneLoaded = true;
+                SceneManager.LoadSceneAsync(sceneObject.scenePath);
             }
         }
         
