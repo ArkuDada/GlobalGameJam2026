@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.Tilemaps;
 
 namespace Script.Tile
@@ -8,6 +9,14 @@ namespace Script.Tile
         public Tilemap targetTilemap;
         public Grid gridLayout;
         public Transform playerTransform;
+
+        private void Awake()
+        {
+            if(targetTilemap && targetTilemap.TryGetComponent(out TilemapRenderer renderer))
+            {
+                renderer.enabled = false;
+            }
+        }
 
         private Vector3Int GetPlayerCellPosition()
         {

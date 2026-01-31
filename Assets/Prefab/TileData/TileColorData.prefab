@@ -46,7 +46,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Script.Tile.TileInfo
   _tileColor: 0
+  _sprite: {fileID: 2994511187168440321}
   TileType: 0
+  _colorDict: {fileID: 11400000, guid: 2c18e536969a9a24d80e613765c6033e, type: 2}
 --- !u!1 &4674402760690246416
 GameObject:
   m_ObjectHideFlags: 0
@@ -56,7 +58,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3154396299026744177}
-  - component: {fileID: 1344049589584048156}
+  - component: {fileID: 2994511187168440321}
   m_Layer: 0
   m_Name: Image
   m_TagString: Untagged
@@ -79,7 +81,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 9130675321995809240}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &1344049589584048156
+--- !u!212 &2994511187168440321
 SpriteRenderer:
   serializedVersion: 2
   m_ObjectHideFlags: 0
@@ -105,7 +107,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: 9dfc825aed78fcd4ba02077103263b40, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -128,7 +130,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
+  m_Sprite: {fileID: -3466029507227457056, guid: 4c410bc5a1b29f54180656d71dd76569, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

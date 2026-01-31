@@ -31,44 +31,76 @@ public class PlayerController : MonoBehaviour
     private ScriptableEventNoParam OnPlayerReachedGoal;
 
 
-    public void HandleMovement(MovementEnum movementEnum)
+    public void HandleInput(InputSequenceEnum inputSequenceEnum)
     {
-        if(!CanMoveTo(movementEnum, out Vector3 targetPos, out GameColorEnum predictedColor, out bool validColorSequence))
+        if(inputSequenceEnum.IsMovementInput())
         {
-            //Hit Wall
-            return;
+            Debug.Log("Received Input: " + inputSequenceEnum);
+            HandleMovement(inputSequenceEnum.ToMovementEnum());
         }
-
-        _inputSequence.Add(movementEnum);
-
-        Debug.Log("Moving: " + movementEnum);
-
-        transform.position = targetPos;
-
-        if(validColorSequence)
-            ChangePlayerColor(predictedColor);
-
-
-        CheckCurrentGridEffect();
     }
 
-    private void ChangePlayerColor(GameColorEnum predictedColor)
+    private void HandleMovement(MovementEnum movementEnum)
     {
-        if(predictedColor is not GameColorEnum.Black and not GameColorEnum.White)
+        bool canMove = false;
+        bool bValidNextColor = false;
+        GameColorEnum currentColor = _playerData.playerColor;
+        if(CanMoveTo(movementEnum, out Vector3 targetPos, out GameColorEnum predictedColor,
+               out bool validColorSequence))
+        {
+            canMove = true;
+
+            _inputSequence.Add(movementEnum);
+
+            Debug.Log("Moving: " + movementEnum);
+
+            transform.position = targetPos;
+
+            if(validColorSequence)
+            {
+                bValidNextColor = true;
+                currentColor = predictedColor;
+                ChangePlayerColor(currentColor);
+            }
+
+
+            CheckCurrentGridEffect();
+        }
+        else
+        {
+        }
+    }
+
+    private bool TryGetNextColor(GameColorEnum currentColor, GameColorEnum nextColor, out GameColorEnum predictedColor)
+    {
+        if(nextColor is not GameColorEnum.Black and not GameColorEnum.White)
         {
             if(_playerData.bMixMode)
             {
-                if(_colorDict.MixColors(_playerData.playerColor, predictedColor, out var mixedColor))
+                if(_colorDict.MixColors(currentColor, nextColor, out var mixedColor))
                 {
-                    _playerData.SetColor(mixedColor, _colorDict.GetColor(mixedColor));
+                    predictedColor = mixedColor;
+                    return true;
                 }
             }
-            else
-            {
-                _playerData.SetColor(predictedColor, _colorDict.GetColor(predictedColor));
-            }
 
-            _playerData.bMixMode = false;
+            predictedColor = nextColor;
+            return true;
+        }
+
+        predictedColor = GameColorEnum.Black;
+        return false;
+    }
+
+    private void ChangePlayerColor(GameColorEnum nextColor)
+    {
+        if(nextColor is not GameColorEnum.Black and not GameColorEnum.White)
+        {
+            _playerData.SetColor(nextColor, _colorDict.GetColor(nextColor));
+            if(_playerData.bMixMode && nextColor.IsMixedColor())
+            {
+                _playerData.bMixMode = false;
+            }
         }
 
         Debug.Log($"Is Mix Mode {_playerData.bMixMode}");
@@ -104,10 +136,11 @@ public class PlayerController : MonoBehaviour
         return transform.position + (movementEnum.ToVector3() * _moveSpeed);
     }
 
-    private bool CanMoveTo(MovementEnum movementEnum, out Vector3 targetPos, out GameColorEnum predictedColor, out bool validColorSequence)
+    private bool CanMoveTo(MovementEnum movementEnum, out Vector3 targetPos, out GameColorEnum predictedColor,
+        out bool validColorSequence)
     {
         validColorSequence = false;
-        
+
         //Assume Player Same Color
         GameColorEnum currentPredictedColor = _playerData.playerColor;
         bool bCanMove = false;
@@ -121,7 +154,10 @@ public class PlayerController : MonoBehaviour
         validColorSequence = colorRecognizer.GetColor(movementEnums, out var newPredictedColor);
         if(validColorSequence)
         {
-            currentPredictedColor = newPredictedColor;
+            if(TryGetNextColor(currentPredictedColor,newPredictedColor, out var nextColor))
+            {
+                currentPredictedColor = nextColor;
+            }
         }
 
         if(_gridHelper)
@@ -141,7 +177,7 @@ public class PlayerController : MonoBehaviour
                     {
                         bCanMove = true;
                     }
-                }   
+                }
             }
         }
 

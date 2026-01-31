@@ -20,6 +20,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: MixTileData
       objectReference: {fileID: 0}
+    - target: {fileID: 2994511187168440321, guid: 8f80e0761f6ba1040a30a1666b4c4a19, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -1484561487, guid: 4c410bc5a1b29f54180656d71dd76569, type: 3}
     - target: {fileID: 9130675321995809240, guid: 8f80e0761f6ba1040a30a1666b4c4a19, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
