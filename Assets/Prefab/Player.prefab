@@ -162,8 +162,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fcd81982bf049768f23185714ba5105, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Script.Player.PlayerData
-  spriteRenderer: {fileID: 1994950005948383947}
-  playerMaterial: {fileID: 2100000, guid: b4441d404f6f409469119ebcafc9d8dd, type: 2}
+  _meshRenderer: {fileID: 9082677724933881243}
+  playerMaterialBase: {fileID: 2100000, guid: b4441d404f6f409469119ebcafc9d8dd, type: 2}
   playerColor: 0
   bMixMode: 0
 --- !u!114 &3851712741797700420
@@ -392,5 +392,10 @@ PrefabInstance:
 --- !u!4 &7946332816593553140 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: cea07c7fbefa1cb4389b72ebca2fff8e, type: 3}
+  m_PrefabInstance: {fileID: 7623946441339953439}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &9082677724933881243 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -7511558181221131132, guid: cea07c7fbefa1cb4389b72ebca2fff8e, type: 3}
   m_PrefabInstance: {fileID: 7623946441339953439}
   m_PrefabAsset: {fileID: 0}

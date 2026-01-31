@@ -1,15 +1,17 @@
 ﻿using System;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Script.Player
 {
     public class PlayerData : MonoBehaviour
     {
         [SerializeField]
-        SpriteRenderer spriteRenderer;
+        MeshRenderer _meshRenderer;
 
         [SerializeField]
-        Material playerMaterial;
+        private Material playerMaterialBase;
+
 
         public GameColorEnum playerColor = GameColorEnum.White;
 
@@ -17,19 +19,27 @@ namespace Script.Player
 
         private void Start()
         {
+            //Create mat instance to avoid changing the shared material
+
+            if(playerMaterialBase)
+            {
+                Material matVariant = new Material(playerMaterialBase);
+                if(_meshRenderer)
+                {
+                    _meshRenderer.material = matVariant;
+                }
+            }
+
             SetColor(GameColorEnum.White, Color.white);
         }
 
         public void SetColor(GameColorEnum newColor, Color color)
         {
             playerColor = newColor;
-            if(spriteRenderer)
-                spriteRenderer.color = color;
 
-            if(playerMaterial)
+            if(_meshRenderer)
             {
-                //set property base color
-                playerMaterial.SetColor("_BaseColor", color);
+                _meshRenderer.material.SetColor("_BaseColor", color);
             }
         }
     }
