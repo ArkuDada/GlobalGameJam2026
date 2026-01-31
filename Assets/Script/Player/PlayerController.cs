@@ -141,7 +141,7 @@ public class PlayerController : MonoBehaviour
                     {
                         bCanMove = true;
                     }
-                }
+                }   
             }
         }
 
