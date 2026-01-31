@@ -34,4 +34,19 @@ public static class InputSequenceEnumHelper
             _ => throw new ArgumentOutOfRangeException(nameof(input), input, null)
         };
     }
+    
+    public static string ToDisplayString(this InputSequenceEnum input)
+    {
+        return input switch
+        {
+            InputSequenceEnum.Up => "↑",
+            InputSequenceEnum.Down => "↓",
+            InputSequenceEnum.Left => "←",
+            InputSequenceEnum.Right => "→",
+            InputSequenceEnum.Mix => "@",
+            InputSequenceEnum.Reset => "Reset",
+            InputSequenceEnum.Undo => "Undo",
+            _ => throw new ArgumentOutOfRangeException(nameof(input), input, null)
+        };
+    }
 }
