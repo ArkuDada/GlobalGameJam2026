@@ -398,7 +398,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &1221673426
+--- !u!1001 &1140839723
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -408,11 +408,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 6186840083833683945, guid: 9552c4e8f5f14be44b533ae66d954c28, type: 3}
       propertyPath: m_Name
-      value: Main Camera_1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7532001285818372877, guid: 9552c4e8f5f14be44b533ae66d954c28, type: 3}
-      propertyPath: field of view
-      value: 35
+      value: Main Camera
       objectReference: {fileID: 0}
     - target: {fileID: 9092673761244376200, guid: 9552c4e8f5f14be44b533ae66d954c28, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1274,8 +1270,8 @@ SceneRoots:
   m_Roots:
   - {fileID: 728419885}
   - {fileID: 892855621}
-  - {fileID: 1221673426}
   - {fileID: 875300535}
   - {fileID: 480048456}
   - {fileID: 2012597951}
   - {fileID: 1763393411}
+  - {fileID: 1140839723}

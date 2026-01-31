@@ -119,7 +119,7 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1001 &107611628
+--- !u!1001 &129221260
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -129,11 +129,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 6186840083833683945, guid: 9552c4e8f5f14be44b533ae66d954c28, type: 3}
       propertyPath: m_Name
-      value: Main Camera_1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7532001285818372877, guid: 9552c4e8f5f14be44b533ae66d954c28, type: 3}
-      propertyPath: field of view
-      value: 35
+      value: Main Camera
       objectReference: {fileID: 0}
     - target: {fileID: 9092673761244376200, guid: 9552c4e8f5f14be44b533ae66d954c28, type: 3}
       propertyPath: m_LocalPosition.x
@@ -328,11 +324,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5244245738151836140, guid: f7ecf2397545aef40a95b57e48ebee57, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3.77856
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5244245738151836140, guid: f7ecf2397545aef40a95b57e48ebee57, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.16004
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5244245738151836140, guid: f7ecf2397545aef40a95b57e48ebee57, type: 3}
       propertyPath: m_LocalPosition.z
@@ -3086,8 +3082,8 @@ SceneRoots:
   m_Roots:
   - {fileID: 393688238}
   - {fileID: 1773522350}
-  - {fileID: 107611628}
   - {fileID: 680953364}
   - {fileID: 2100258110}
   - {fileID: 1899216997}
   - {fileID: 1212047779}
+  - {fileID: 129221260}
