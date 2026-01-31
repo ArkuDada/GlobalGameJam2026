@@ -37,14 +37,19 @@ namespace Script.UI
 
         private void Awake()
         {
-            _currentActiveIndex = 0;
+            ResetUI();
+        }
 
+        private void ResetUI()
+        {
             foreach(var text in _sequenceTexts)
             {
-                text.text = "";
+                text.text = "?";
                 text.color = _colorDict.GetColor(GameColorEnum.White);
-                text.gameObject.SetActive(false);
+                text.gameObject.SetActive(true);
             }
+
+            _currentActiveIndex = _sequenceTexts.Count;
 
             SaveDisplayState();
         }
