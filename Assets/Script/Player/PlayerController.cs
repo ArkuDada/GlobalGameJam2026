@@ -1,0 +1,103 @@
+using System.Collections.Generic;
+using System.Linq;
+using Script;
+using Script.GameColor;
+using Script.Player;
+using Script.Tile;
+using UnityEngine;
+
+public class PlayerController : MonoBehaviour
+{
+    [SerializeField]
+    PlayerData _playerData;
+
+    [SerializeField]
+    private float _moveSpeed = 1f;
+
+    [SerializeField]
+    private List<MovementEnum> _inputSequence = new List<MovementEnum>();
+
+    [SerializeField]
+    private ColorRecognizer colorRecognizer;
+
+    [SerializeField]
+    private GridHelper _gridHelper;
+
+    [SerializeField]
+    private ColorDict _colorDict;
+
+    public void HandleMovement(MovementEnum movementEnum)
+    {
+        if(!CanMoveTo(movementEnum, out Vector3 targetPos, out GameColorEnum predictedColor))
+        {
+            //Hit Wall
+            return;
+        }
+
+        _inputSequence.Add(movementEnum);
+
+        Debug.Log("Moving: " + movementEnum);
+
+        transform.position = targetPos;
+
+        if(predictedColor is not GameColorEnum.Black and not GameColorEnum.White)
+            _playerData.SetColor(predictedColor, _colorDict.GetColor(predictedColor));
+
+
+        if(_gridHelper && _gridHelper.TryGetGameObjectAtPlayer(out GameObject tileGameObject))
+        {
+            if(tileGameObject.TryGetComponent(out TileInfo tileInfo))
+            {
+                Debug.Log($"Step on Tile Color: {tileInfo.TileColor}, Player Color: {_playerData.playerColor}");
+            }
+        }
+    }
+
+    private Vector3 GetTargetPosition(MovementEnum movementEnum)
+    {
+        return transform.position + (movementEnum.ToVector3() * _moveSpeed);
+    }
+
+    private bool CanMoveTo(MovementEnum movementEnum, out Vector3 targetPos, out GameColorEnum predictedColor)
+    {
+        //Assume Player Same Color
+        GameColorEnum currentPredictedColor = _playerData.playerColor;
+
+        bool bCanMove = false;
+        var movementEnums = _inputSequence.ToList();
+        movementEnums.Add(movementEnum);
+
+        //Predict Target Position
+        targetPos = GetTargetPosition(movementEnum);
+
+        // Predict Color From Movement
+        if(colorRecognizer.GetColor(movementEnums, out var newPredictedColor))
+        {
+            currentPredictedColor = newPredictedColor;
+        }
+
+        if(_gridHelper)
+        {
+            if(!_gridHelper.TryGetGameObjectAtPosition(targetPos, out GameObject tileGameObject))
+            {
+                // can pass if empty tile
+                bCanMove = true;
+            }
+
+            if(tileGameObject && tileGameObject.TryGetComponent(out TileInfo tileInfo))
+            {
+                Debug.Log($"Target Tile Color: {tileInfo.TileColor}, Predicted Color: {currentPredictedColor}");
+                if(tileInfo.TileColor == currentPredictedColor && currentPredictedColor != GameColorEnum.Black)
+                {
+                    bCanMove = true;
+                }
+            }
+        }
+
+        Debug.Log($"Can Move: {bCanMove}, To Position: {targetPos}, Predicted Color: {currentPredictedColor}");
+
+        predictedColor = currentPredictedColor;
+
+        return bCanMove;
+    }
+}
