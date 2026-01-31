@@ -196,6 +196,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f77f63f44457394caff69af09e163f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
+--- !u!1 &749103236
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 749103237}
+  m_Layer: 0
+  m_Name: SceneManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &749103237
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 749103236}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1029158700
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -208,13 +239,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: Main Camera_1
       objectReference: {fileID: 0}
+    - target: {fileID: 7532001285818372877, guid: 9552c4e8f5f14be44b533ae66d954c28, type: 3}
+      propertyPath: field of view
+      value: 35
+      objectReference: {fileID: 0}
     - target: {fileID: 9092673761244376200, guid: 9552c4e8f5f14be44b533ae66d954c28, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.8
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 9092673761244376200, guid: 9552c4e8f5f14be44b533ae66d954c28, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -18
+      value: -4
       objectReference: {fileID: 0}
     - target: {fileID: 9092673761244376200, guid: 9552c4e8f5f14be44b533ae66d954c28, type: 3}
       propertyPath: m_LocalPosition.z
@@ -222,11 +257,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9092673761244376200, guid: 9552c4e8f5f14be44b533ae66d954c28, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.92387956
+      value: 0.9914449
       objectReference: {fileID: 0}
     - target: {fileID: 9092673761244376200, guid: 9552c4e8f5f14be44b533ae66d954c28, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.38268343
+      value: -0.13052624
       objectReference: {fileID: 0}
     - target: {fileID: 9092673761244376200, guid: 9552c4e8f5f14be44b533ae66d954c28, type: 3}
       propertyPath: m_LocalRotation.y
@@ -1192,11 +1227,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8220465509019633899, guid: db1089fa6f60d1d4db7df94f0c5ad815, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.8
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8220465509019633899, guid: db1089fa6f60d1d4db7df94f0c5ad815, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -18
+      value: -4
       objectReference: {fileID: 0}
     - target: {fileID: 8220465509019633899, guid: db1089fa6f60d1d4db7df94f0c5ad815, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1204,11 +1239,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8220465509019633899, guid: db1089fa6f60d1d4db7df94f0c5ad815, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.92387956
+      value: 0.9914449
       objectReference: {fileID: 0}
     - target: {fileID: 8220465509019633899, guid: db1089fa6f60d1d4db7df94f0c5ad815, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.38268343
+      value: -0.13052624
       objectReference: {fileID: 0}
     - target: {fileID: 8220465509019633899, guid: db1089fa6f60d1d4db7df94f0c5ad815, type: 3}
       propertyPath: m_LocalRotation.y
@@ -1220,7 +1255,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8220465509019633899, guid: db1089fa6f60d1d4db7df94f0c5ad815, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
+      value: -15
       objectReference: {fileID: 0}
     - target: {fileID: 8220465509019633899, guid: db1089fa6f60d1d4db7df94f0c5ad815, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
@@ -1245,3 +1280,4 @@ SceneRoots:
   - {fileID: 1552156848}
   - {fileID: 1370602234}
   - {fileID: 1929532938}
+  - {fileID: 749103237}
