@@ -15,5 +15,13 @@ namespace Script.Scene
                 SceneManager.LoadScene(sceneObject.scenePath);
             }
         }
+        
+        public void ReloadScene()
+        {
+            if(sceneObject)
+            {
+                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            }
+        }
     }
 }

@@ -34,6 +34,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private ScriptableEventNoParam OnPlayerReachedGoal;
 
+    [SerializeField]
+    private ScriptableEventNoParam OnPlayerRequestRestart;
+
 
     public void HandleInput(InputSequenceEnum inputSequenceEnum)
     {
@@ -41,6 +44,14 @@ public class PlayerController : MonoBehaviour
         {
             Debug.Log("Received Input: " + inputSequenceEnum);
             HandleMovement(inputSequenceEnum.ToMovementEnum());
+        }
+
+        if(inputSequenceEnum == InputSequenceEnum.Reset)
+        {
+            if(OnPlayerRequestRestart != null)
+            {
+                OnPlayerRequestRestart.Raise();
+            }
         }
     }
 

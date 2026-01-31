@@ -45,6 +45,8 @@ namespace Script.UI
                 text.color = _colorDict.GetColor(GameColorEnum.White);
                 text.gameObject.SetActive(false);
             }
+
+            SaveDisplayState();
         }
 
         public void OnReceiveMovementInputResult(MovementResult mr)

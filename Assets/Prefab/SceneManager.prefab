@@ -65,6 +65,26 @@ MonoBehaviour:
       UseLocal: 1
       LocalValue: 0
       Variable: {fileID: 0}
+    ScriptableEvent: {fileID: 11400000, guid: 5f26ec550fffd2440869df18ff80049c, type: 2}
+    Response:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 6878678231680840580}
+          m_TargetAssemblyTypeName: Script.Scene.SingleSceneLoader, Assembly-CSharp
+          m_MethodName: ReloadScene
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - Delay:
+      UseLocal: 1
+      LocalValue: 0
+      Variable: {fileID: 0}
     ScriptableEvent: {fileID: 11400000, guid: 3bd0e24ff7457934186d7b876a92beae, type: 2}
     Response:
       m_PersistentCalls:
