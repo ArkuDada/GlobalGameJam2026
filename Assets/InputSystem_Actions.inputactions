@@ -1,4 +1,5 @@
 {
+    "version": 1,
     "name": "InputSystem_Actions",
     "maps": [
         {
@@ -208,6 +209,17 @@
                 },
                 {
                     "name": "",
+                    "id": "dc19ea1c-2c79-4b6b-8133-c080e007c462",
+                    "path": "<HID::USB Gamepad >/button3",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Up",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "d83569d2-8c81-47bf-bb7f-e18bbe768bf1",
                     "path": "<Keyboard>/s",
                     "interactions": "",
@@ -221,6 +233,17 @@
                     "name": "",
                     "id": "702d8ada-aaac-4f0f-a90f-fe4b813e19d8",
                     "path": "<Keyboard>/downArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Down",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "82e7ced2-5372-4567-a4c9-34ad4a52d418",
+                    "path": "<HID::USB Gamepad >/button2",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -252,6 +275,17 @@
                 },
                 {
                     "name": "",
+                    "id": "26afa5c0-e368-4021-a01d-3ff23fe716a9",
+                    "path": "<HID::USB Gamepad >/trigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Left",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "34c9d8fe-936b-4a3f-9e0c-ea6cc0a22bf5",
                     "path": "<Keyboard>/d",
                     "interactions": "",
@@ -265,6 +299,17 @@
                     "name": "",
                     "id": "bfe45828-01f1-4ccd-899d-08a4529baf4d",
                     "path": "<Keyboard>/rightArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Right",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "6306b079-1223-4422-8d83-9bbbf4d6c468",
+                    "path": "<HID::USB Gamepad >/button4",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
