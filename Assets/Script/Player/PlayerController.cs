@@ -49,6 +49,10 @@ public class PlayerController : MonoBehaviour
             if(tileGameObject.TryGetComponent(out TileInfo tileInfo))
             {
                 Debug.Log($"Step on Tile Color: {tileInfo.TileColor}, Player Color: {_playerData.playerColor}");
+                if(tileInfo.TileType.HasFlag(TileTypeEnum.Goal))
+                {
+                    Debug.Log("Reached Goal!");
+                }
             }
         }
     }
@@ -86,10 +90,13 @@ public class PlayerController : MonoBehaviour
 
             if(tileGameObject && tileGameObject.TryGetComponent(out TileInfo tileInfo))
             {
-                Debug.Log($"Target Tile Color: {tileInfo.TileColor}, Predicted Color: {currentPredictedColor}");
-                if(tileInfo.TileColor == currentPredictedColor && currentPredictedColor != GameColorEnum.Black)
+                if(tileInfo.TileType.HasFlag(TileTypeEnum.Floor))
                 {
-                    bCanMove = true;
+                    bCanMove = !tileInfo.TileType.HasFlag(TileTypeEnum.ColorGate);
+                    if(tileInfo.TileColor == currentPredictedColor)
+                    {
+                        bCanMove = true;
+                    }
                 }
             }
         }

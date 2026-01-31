@@ -8,5 +8,7 @@ namespace Script.Tile
         private GameColorEnum _tileColor;
         
         public GameColorEnum TileColor => _tileColor;
+
+        public TileTypeEnum TileType;
     }
 }
