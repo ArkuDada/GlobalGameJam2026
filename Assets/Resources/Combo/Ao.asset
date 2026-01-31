@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cdf062333df44a59a2a25ef39c8a563e, type: 3}
   m_Name: Ao
   m_EditorClassIdentifier: Assembly-CSharp::Script.ComboInputSO
-  Inputs: 020000000200000002000000
+  Inputs: 020000000200000000000000
   Color: 3
