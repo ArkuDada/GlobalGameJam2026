@@ -196,7 +196,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f77f63f44457394caff69af09e163f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
---- !u!1001 &1029158700
+--- !u!1001 &454913655
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -206,11 +206,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 6186840083833683945, guid: 9552c4e8f5f14be44b533ae66d954c28, type: 3}
       propertyPath: m_Name
-      value: Main Camera_1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7532001285818372877, guid: 9552c4e8f5f14be44b533ae66d954c28, type: 3}
-      propertyPath: field of view
-      value: 35
+      value: Main Camera
       objectReference: {fileID: 0}
     - target: {fileID: 9092673761244376200, guid: 9552c4e8f5f14be44b533ae66d954c28, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1310,8 +1306,8 @@ SceneRoots:
   m_Roots:
   - {fileID: 224046780}
   - {fileID: 1696649590}
-  - {fileID: 1029158700}
   - {fileID: 1929532938}
   - {fileID: 1552156848}
   - {fileID: 1370602234}
   - {fileID: 8900695172777399988}
+  - {fileID: 454913655}
