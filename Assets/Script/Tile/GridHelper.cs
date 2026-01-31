@@ -18,7 +18,7 @@ namespace Script.Tile
 
         public bool TryGetGameObjectAtPosition(Vector3 pos, out GameObject tileGameObject)
         {
-            Vector3Int cellPosition = GetPlayerCellPosition();
+            Vector3Int cellPosition = gridLayout.WorldToCell(pos);
             tileGameObject = targetTilemap.GetInstantiatedObject(cellPosition);
 
             // Debug.Log($"Cell Position: {cellPosition}, Tile GameObject: {tileGameObject}");

@@ -60,20 +60,20 @@ public class PlayerController : MonoBehaviour
 
     private bool CanMoveTo(MovementEnum movementEnum, out Vector3 targetPos, out GameColorEnum predictedColor)
     {
-        //temp move seq
+        //Assume Player Same Color
+        GameColorEnum currentPredictedColor = _playerData.playerColor;
+
+        bool bCanMove = false;
         var movementEnums = _inputSequence.ToList();
         movementEnums.Add(movementEnum);
 
+        //Predict Target Position
         targetPos = GetTargetPosition(movementEnum);
 
-        if(!colorRecognizer.GetColor(movementEnums, out predictedColor))
+        // Predict Color From Movement
+        if(colorRecognizer.GetColor(movementEnums, out var newPredictedColor))
         {
-            predictedColor = GameColorEnum.Black;
-        }
-
-        if(predictedColor == GameColorEnum.Black)
-        {
-            predictedColor = _playerData.playerColor;
+            currentPredictedColor = newPredictedColor;
         }
 
         if(_gridHelper)
@@ -81,18 +81,23 @@ public class PlayerController : MonoBehaviour
             if(!_gridHelper.TryGetGameObjectAtPosition(targetPos, out GameObject tileGameObject))
             {
                 // can pass if empty tile
-                return true;
+                bCanMove = true;
             }
 
-            if(tileGameObject.TryGetComponent(out TileInfo tileInfo))
+            if(tileGameObject && tileGameObject.TryGetComponent(out TileInfo tileInfo))
             {
-                if(tileInfo.TileColor == predictedColor)
+                Debug.Log($"Target Tile Color: {tileInfo.TileColor}, Predicted Color: {currentPredictedColor}");
+                if(tileInfo.TileColor == currentPredictedColor && currentPredictedColor != GameColorEnum.Black)
                 {
-                    return true;
+                    bCanMove = true;
                 }
             }
         }
 
-        return false;
+        Debug.Log($"Can Move: {bCanMove}, To Position: {targetPos}, Predicted Color: {currentPredictedColor}");
+
+        predictedColor = currentPredictedColor;
+
+        return bCanMove;
     }
 }
