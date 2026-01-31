@@ -28,5 +28,30 @@ namespace Script.GameColor
 
             return Color.black;
         }
+        
+        public bool MixColors(GameColorEnum colorA, GameColorEnum colorB, out GameColorEnum resultColor)
+        {
+            if(colorA == GameColorEnum.Red && colorB == GameColorEnum.Blue ||
+               colorA == GameColorEnum.Blue && colorB == GameColorEnum.Red)
+            {
+                resultColor = GameColorEnum.Purple;
+            }
+            else if(colorA == GameColorEnum.Red && colorB == GameColorEnum.Yellow ||
+                    colorA == GameColorEnum.Yellow && colorB == GameColorEnum.Red)
+            {
+                resultColor =  GameColorEnum.Orange;
+            }
+            else if(colorA == GameColorEnum.Blue && colorB == GameColorEnum.Yellow ||
+                    colorA == GameColorEnum.Yellow && colorB == GameColorEnum.Blue)
+            {
+                resultColor =  GameColorEnum.Green;
+            }
+            else
+            {
+                resultColor =  GameColorEnum.Black; // Invalid mix
+            }
+            
+            return resultColor != GameColorEnum.Black;
+        }
     }
 }

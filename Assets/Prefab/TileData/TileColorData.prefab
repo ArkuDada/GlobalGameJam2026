@@ -46,6 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Script.Tile.TileInfo
   _tileColor: 0
+  TileType: 0
 --- !u!1 &4674402760690246416
 GameObject:
   m_ObjectHideFlags: 0

@@ -10,6 +10,8 @@ namespace Script.Player
 
         public GameColorEnum playerColor = GameColorEnum.White;
 
+        public bool bMixMode = false;
+
         private void Start()
         {
             if(spriteRenderer)

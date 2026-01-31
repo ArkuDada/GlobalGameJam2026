@@ -3,10 +3,11 @@ using UnityEngine;
 
 public enum MovementEnum
 {
-    Up,
+    Null = -1,
+    Up = 0,
     Down,
     Left,
-    Right
+    Right,
 }
 
 //Helper func
@@ -38,6 +39,7 @@ public static class MovementEnumHelper
             case MovementEnum.Right:
                 return Vector2.right;
         }
+
         return Vector2.zero;
     }
 
@@ -54,6 +56,7 @@ public static class MovementEnumHelper
             case MovementEnum.Right:
                 return Vector3.right;
         }
+
         return Vector3.zero;
     }
 }

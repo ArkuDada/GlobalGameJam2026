@@ -11,18 +11,18 @@ PrefabInstance:
     - target: {fileID: 1344049589584048156, guid: 8f80e0761f6ba1040a30a1666b4c4a19, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 1689239763, guid: 4c410bc5a1b29f54180656d71dd76569, type: 3}
+      objectReference: {fileID: 944647342, guid: 4c410bc5a1b29f54180656d71dd76569, type: 3}
     - target: {fileID: 1793380207133832011, guid: 8f80e0761f6ba1040a30a1666b4c4a19, type: 3}
       propertyPath: TileType
-      value: 17
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 1793380207133832011, guid: 8f80e0761f6ba1040a30a1666b4c4a19, type: 3}
       propertyPath: _tileColor
-      value: 0
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 2372516593146969825, guid: 8f80e0761f6ba1040a30a1666b4c4a19, type: 3}
       propertyPath: m_Name
-      value: GoalTileData
+      value: PurpleTileData
       objectReference: {fileID: 0}
     - target: {fileID: 9130675321995809240, guid: 8f80e0761f6ba1040a30a1666b4c4a19, type: 3}
       propertyPath: m_LocalPosition.x
